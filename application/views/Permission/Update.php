@@ -34,7 +34,7 @@
                         } ?>
                     </div>
                 </div>
-                <form action="<?= site_url('User_System/Update') ?>" method="POST">
+                <form action="<?= site_url('User_Admin/Update') ?>" method="POST">
                     <div class="row">
                         <div class="col-md-4">
                         </div>

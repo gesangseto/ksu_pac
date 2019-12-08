@@ -35,7 +35,7 @@
                     <div class="col-md-12">
                         <div class="container">
 
-                            <form class="form-signin" action="<?= site_url('User_System/Create') ?>" method="POST">
+                            <form class="form-signin" action="<?= site_url('User_Admin/Create') ?>" method="POST">
                                 <h4 class="form-signin-heading">Add System Admin</h4>
                                 <div class="form-group">
                                     <div class="input-group">

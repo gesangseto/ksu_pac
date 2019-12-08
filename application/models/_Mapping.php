@@ -18,25 +18,25 @@ class _Mapping extends CI_Model
     }
     public function _count_access_map()
     {
-        $query = $this->db->query("SELECT access_map FROM `user_role` AS `A` JOIN `user_access_map` AS `B` ON `A`.`access_map_id` = `B`.`id` ");
+        $query = $this->db->query("SELECT access_map FROM `user_permission` AS `A` JOIN `user_access_map` AS `B` ON `A`.`access_map_id` = `B`.`id` ");
         return ($query->result_array());
     }
     public function _count_parent_map()
     {
         $query = $this->db->query("SELECT access_map,count(*) as `total`
-        FROM `user_role` AS `A` JOIN `user_access_map` AS `B` ON `A`.`access_map_id` = `B`.`id` 
+        FROM `user_permission` AS `A` JOIN `user_access_map` AS `B` ON `A`.`access_map_id` = `B`.`id` 
         GROUP BY access_map");
         return ($query->result_array());
     }
     public function _view_user($id)
     {
-        $query = $this->db->get_where('system_admin', array('id' => $id));
+        $query = $this->db->get_where('user_admin', array('id' => $id));
         return ($query->result_array());
     }
     public function _check_update($id, $field)
     {
-        $check_email = $this->db->get_where('system_admin', array('id!=' => $id, 'email' => $field['email']), 1);
-        $check_username = $this->db->get_where('system_admin', array('id!=' => $id, 'username' => $field['username']), 1);
+        $check_email = $this->db->get_where('user_admin', array('id!=' => $id, 'email' => $field['email']), 1);
+        $check_username = $this->db->get_where('user_admin', array('id!=' => $id, 'username' => $field['username']), 1);
         if ($check_email->num_rows() > 0) {
             $data = array(
                 'status' => '0',
@@ -58,7 +58,7 @@ class _Mapping extends CI_Model
     public function _update_user($id, $field)
     {
         $this->db->where('id', $id);
-        $query = $this->db->update('system_admin', $field);
+        $query = $this->db->update('user_admin', $field);
         if ($query == 1) {
             $data = array(
                 'status' => '1',
@@ -90,7 +90,7 @@ class _Mapping extends CI_Model
     }
     public function _check_delete_access($id)
     {
-        $query = $this->db->query("SELECT * FROM `user_access_map` as A JOIN user_role  as B ON A.id = B.access_map_id WHERE A.id = $id", 1);
+        $query = $this->db->query("SELECT * FROM `user_access_map` as A JOIN user_permission  as B ON A.id = B.access_map_id WHERE A.id = $id", 1);
         if ($query->num_rows() > 0) {
             $data = array(
                 'status' => '0',
@@ -204,8 +204,8 @@ class _Mapping extends CI_Model
     }
     public function _view_access_map($id)
     {
-        $query = $this->db->query("SELECT * FROM `user_role` AS `A` 
-                                    JOIN `system_admin` AS `B` ON `A`.`admin_id` = `B`.`id`
+        $query = $this->db->query("SELECT * FROM `user_permission` AS `A` 
+                                    JOIN `user_admin` AS `B` ON `A`.`admin_id` = `B`.`id`
                                     JOIN `user_access_map` AS `C` ON `A`.`access_map_id` = `C`.`id`
                                     WHERE `access_map_id`=$id ORDER BY `C`.`access_map` ASC");
         return ($query->result_array());

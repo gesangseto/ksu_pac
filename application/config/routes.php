@@ -15,10 +15,10 @@ $route['Permission'] = 'Permission';
 $route['Permission/Create'] = 'Permission/create';
 $route['Permission/Update'] = 'Permission/update';
 // User System
-$route['User_System'] = 'User_System';
-$route['User_System/Create'] = 'User_System/create';
-$route['User_System/Update'] = 'User_System/update';
-$route['User_System/Delete'] = 'User_System/delete';
+$route['User_Admin'] = 'User_Admin';
+$route['User_Admin/Create'] = 'User_Admin/create';
+$route['User_Admin/Update'] = 'User_Admin/update';
+$route['User_Admin/Delete'] = 'User_Admin/delete';
 // Mapping
 $route['Mapping'] = 'Mapping';
 $route['Mapping/Create'] = 'Mapping/create';

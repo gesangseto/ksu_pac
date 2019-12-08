@@ -103,7 +103,7 @@ class Mapping extends CI_Controller
         } else if (isset($_GET['admin_id'])) {
             $admin_id = $this->input->get('admin_id', TRUE);
             $access_map_id = $this->input->get('map_id', TRUE);
-            $this->db->delete('user_role', array('admin_id' => $admin_id, 'access_map_id' => $access_map_id));
+            $this->db->delete('user_permission', array('admin_id' => $admin_id, 'access_map_id' => $access_map_id));
             $dataRs = array(
                 "status" => 1,
                 "message" => "Success Delete User Permission"

@@ -169,7 +169,8 @@
                         } else if ($row['status'] == 2) {
                           echo '<a href="' . site_url('') . 'Payroll_Sdm/Update?week=' . $row['week'] . '&sdm_id=' . $_GET['id'] . '&project_id=' . $_GET['project_id'] . '&position_id=' . $sdm[0]['position_id'] . '&periode=' . $periode . '&confirmation=true" class="btn btn-success">Konfirmasi</a>';
                         } else if ($row['status'] == 3) {
-                          echo '<a target="_blank" href="' . site_url('Print_Document/Payroll_Sdm') . '?week=' . $row['week'] . '&sdm_id=' . $_GET['id'] . '&project_id=' . $_GET['project_id'] . '&print=true" class="btn">Print Payroll</a>';
+                          echo '<a target="_blank" href="' . site_url('Print_Document/Payroll_Sdm') . '?week=' . $row['week'] . '&sdm_id=' . $_GET['id'] . '&project_id=' . $_GET['project_id'] . '&print=true" class="btn">Print Payroll </a>';
+                          echo '<a href="' . site_url('Absence_Sdm/Read') . '?week=' . $row['week'] . '&sdm_id=' . $_GET['id'] . '&project_id=' . $_GET['project_id'] . '&view=true" class="btn btn-success">View Payroll</a>';
                         }
                         echo '</div>';
                       }

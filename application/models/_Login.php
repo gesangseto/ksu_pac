@@ -5,7 +5,7 @@ class _Login extends CI_Model
 {
     public function _check_login($username, $password)
     {
-        $query = $this->db->get_where('system_admin', array('username' => $username, 'password' => $password), 1);
+        $query = $this->db->get_where('user_admin', array('username' => $username, 'password' => $password), 1);
         if ($query->num_rows() > 0) {
             foreach ($query->result_array() as $row) {
                 $data = array(

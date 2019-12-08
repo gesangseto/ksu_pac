@@ -11,14 +11,14 @@
                 <a href="javascript:void(0);" class="toggle-sidebar">
                     <span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span>
                 </a>
-                Master data SDM
+                Administrator / User Admin
             </h3>
         </div>
         <div class="panel-body">
             <div class="content-row">
                 <div class="row">
                     <div class="col-md-4">
-                        <a class="btn btn-primary" href="<?= site_url('User_Sdm/Create') ?>">Add SDM</a>
+                        <a class="btn btn-primary" href="<?= site_url('User_Admin/Create') ?>">Add Admin</a>
                     </div>
                     <div class="col-md-8">
                         <?php if (isset($message)) {
@@ -45,11 +45,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>NIK</th>
                                     <th>Nama</th>
-                                    <th>Nomor Telpon</th>
-                                    <th>Alamat</th>
-                                    <th>Join Date</th>
+                                    <th>Email</th>
+                                    <th>Create Time</th>
+                                    <th>Update Time</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -57,7 +56,6 @@
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div><!-- panel body -->
@@ -74,7 +72,7 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= site_url('Ajax_Datatables/get_data_user_sdm') ?>",
+                "url": "<?= site_url('Ajax_Datatables/get_data_user_admin') ?>",
                 "type": "POST"
             },
             "columnDefs": [{
@@ -96,7 +94,7 @@
             })
             .then((willDelete) => {
                 if (willDelete) {
-                    window.location.href = "<?= site_url('User_Sdm/Delete?id='); ?>" + uid;
+                    window.location.href = "<?= site_url('User_Admin/Delete?id='); ?>" + uid;
                 } else {
                     swal("User is safe!");
                 }

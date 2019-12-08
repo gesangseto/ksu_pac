@@ -78,7 +78,7 @@
               <tbody>
                 <?php
                 @$no = 1;
-                foreach ($user_role as $row) {
+                foreach ($user_permission as $row) {
                   ?>
                   <tr>
                     <td><?= @$no ?></td>
@@ -132,7 +132,7 @@
 
 
 <?php
-foreach ($user_role as $row_role) { ?>
+foreach ($user_permission as $row_role) { ?>
   <div class="modal" id="role_<?= $row_role['role_id'] ?>">
     <div class="modal-dialog">
       <div class="modal-content">

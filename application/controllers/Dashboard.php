@@ -14,15 +14,11 @@ class Dashboard extends CI_Controller
         $this->load->model('_BaseRole');
         $header['data'] = $this->_BaseRole->_check_permission();
         $this->load->view('Templates/Header', $header);
-        $this->load->model('_Dashboard');
     }
 
 
     public function index()
     {
-        $data['all_project'] = $this->_Dashboard->_get_all_project();
-        $data['all_running_project'] = $this->_Dashboard->_get_all_running_project();
-        $this->load->view('Dashboard/Index', $data);
         $this->load->view('Templates/Footer');
     }
 }
