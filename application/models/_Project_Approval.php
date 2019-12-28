@@ -65,12 +65,12 @@ class _Project_Approval extends CI_Model
         $data = $this->db->query($query);
         return ($data)->result_array();
     }
-    public function _decline_project($field)
+    public function _update_status_project($field)
     {
         $this->db->where(array('id' => $field['id']));
         $query =  $this->db->update('project', $field);
         if ($query) {
-            $data = array('status' => 1, 'message' => 'Success Decline');
+            $data = array('status' => 1, 'message' => 'Success Update');
         } else {
             $data = array('status' => 0, 'message' => 'System error');
         }

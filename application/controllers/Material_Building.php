@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Project_Approval extends CI_Controller
+class Material_Building extends CI_Controller
 {
 
     public function __construct()
@@ -12,12 +12,10 @@ class Project_Approval extends CI_Controller
             redirect(site_url("Login"));
         }
         $this->_check_permission();
-        $this->load->model('_Project_Approval');
     }
     public function index()
     {
-        $dataRs['all_project_pending'] = $this->_Project_Approval->_get_all_project_approval();
-        $this->load->view('Project_Approval/Index', $dataRs);
+        $this->load->view('Material_Building/Index');
     }
     public function create()
     {
@@ -25,34 +23,11 @@ class Project_Approval extends CI_Controller
     }
     public function read()
     {
-        $field = array(
-            'cust_id' => $this->input->get('cust_id'),
-            'project_id' => $this->input->get('project_id')
-        );
-        $dataRs['customer'] = $this->_Project_Approval->_get_customer($field);
-        $dataRs['project'] = $this->_Project_Approval->_get_project($field);
-        $dataRs['absence'] = $this->_Project_Approval->_get_absence($field);
-        $dataRs['uniq'] = $this->_Project_Approval->_get_sdm_uniq($field);
-        $this->load->view('Project_Approval/Read', $dataRs);
+        // Here You Code for Read
     }
     public function update()
     {
-        if (isset($_POST['decline'])) {
-            $data = array(
-                'id' => $_POST['project_id'],
-                'project_note' => $_POST['project_note'],
-                'status' => 'Decline'
-            );
-            $dataRs = $this->_Project_Approval->_update_status_project($data);
-        } else if (isset($_GET['approved'])) {
-            $data = array(
-                'id' => $_GET['project_id'],
-                'status' => 'Approved'
-            );
-            $dataRs = $this->_Project_Approval->_update_status_project($data);
-        }
-        $dataRs['all_project_pending'] = $this->_Project_Approval->_get_all_project_approval();
-        $this->load->view('Project_approval/Index', $dataRs);
+        // Here You Code for Update
     }
     public function delete()
     {

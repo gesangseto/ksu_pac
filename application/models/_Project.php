@@ -94,14 +94,11 @@ class _Project extends CI_Model
             return FALSE;
         }
     }
-    public function _req_approval_project($id)
+    public function _update_status_project($field)
     {
-        $field = array(
-            'status' => 'Pending Approval'
-        );
-        $this->db->where('id', $id);
+        $this->db->where('id', $field['id']);
         $query = $this->db->update('project', $field);
-if ($query) {
+        if ($query) {
             $data = array(
                 'status' => '1',
                 'message' => 'success update data'

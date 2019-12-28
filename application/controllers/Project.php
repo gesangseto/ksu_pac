@@ -54,13 +54,26 @@ class Project extends CI_Controller
     public function update()
     {
         if (!empty($_GET['req_approval'])) {
-			
+
             $id = $this->input->get('project_id');
-			$dataRs = $this->_Project->_req_approval_project($id);
-        $dataRs['all_project'] = $this->_Project->_get_all_project();
-        $this->load->view('Project/Index', $dataRs);
-		}
-        else if (!empty($_GET['id'])) {
+            $field = array(
+                'id' => $id,
+                'status' => 'Pending Approval'
+            );
+            $dataRs = $this->_Project->_update_status_project($field);
+            $dataRs['all_project'] = $this->_Project->_get_all_project();
+            $this->load->view('Project/Index', $dataRs);
+        } else if (!empty($_GET['running'])) {
+
+            $id = $this->input->get('project_id');
+            $field = array(
+                'id' => $id,
+                'status' => 'Running'
+            );
+            $dataRs = $this->_Project->_update_status_project($field);
+            $dataRs['all_project'] = $this->_Project->_get_all_project();
+            $this->load->view('Project/Index', $dataRs);
+        } else if (!empty($_GET['id'])) {
             $id = $this->input->get('id');
             $data['all_customer'] = $this->_Project->_get_all_customer();
             $data['project'] = $this->_Project->_get_project($id);

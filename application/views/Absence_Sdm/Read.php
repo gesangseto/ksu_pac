@@ -159,7 +159,7 @@
                       <?php
                         if ($row['status'] == -1) {
                           echo '<div class="form-group has-warning has-feedback">';
-                          echo '<label for="inputWarning2" class="control-label">' . @$row['absence_note'] . 's</label>';
+                          echo '<label for="inputWarning2" class="control-label">' . @$row['absence_note'] . '</label>';
                           echo '</div>';
                           echo '<a href="' . site_url('') . 'Payroll_Sdm/Create?recreate=true&week=' . $row['week'] . '&sdm_id=' . $_GET['id'] . '&project_id=' . $_GET['project_id'] . '&position_id=' . $sdm[0]['position_id'] . '&periode=' . $periode . '" class="btn btn-danger">Re-Create Payroll</a>';
                         } else if ($row['status'] == 0) {

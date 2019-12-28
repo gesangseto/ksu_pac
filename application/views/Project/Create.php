@@ -43,7 +43,7 @@
                                 <div class="col-md-6">
                                     <label>Filter </label>
                                     <div class="input-group">
-                                        <input type="search" id="SearchID" placeholder="ID or NIK or Name" class="form-control">
+                                        <input type="search" id="SearchID" placeholder="ID or NIK or Name" value="<?= @$_GET['id'] ?>" class="form-control">
                                         <span class="input-group-btn">
                                             <button class="btn btn-primary" type="button" onclick="SearchSdm()"><span>
                                                 </span> Filter</button>

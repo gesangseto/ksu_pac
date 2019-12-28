@@ -165,6 +165,42 @@ class Ajax_Datatables extends CI_Controller
         //output dalam format JSON
         echo json_encode($output);
     }
+    function get_data_material_building()
+    {
+        $BaseData = array(
+            'table' => 'material_building',
+            'column_order' => array(null, 'material_name', 'category_id', 'brand', 'dimension', 'unit', 'price'),
+            'column_search' => array('material_name', 'category_id', 'brand', 'dimension', 'unit', 'price'),
+            'order' => array('id' => 'asc')
+        );
+        $list = $this->_Ajax_Datatables->get_datatables($BaseData);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $field) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $field->material_name;
+            $row[] = $field->category_id;
+            $row[] = $field->brand;
+            $row[] = $field->dimension;
+            $row[] = $field->unit;
+            $row[] = $field->price;
+            $row[] = '
+            <button onclick="hapus(' . $field->id . ')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                <a href="' . site_url('Project/Update') . '?id=' . $field->id . '" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                <a href="' . site_url('Project/Read') . '?id=' . $field->id . '" class="btn btn-success"><i class="fa fa-search"></i></a>';
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->_Ajax_Datatables->count_all($BaseData),
+            "recordsFiltered" => $this->_Ajax_Datatables->count_filtered($BaseData),
+            "data" => $data,
+        );
+        //output dalam format JSON
+        echo json_encode($output);
+    }
 }
 
 /* End of file Login.php */

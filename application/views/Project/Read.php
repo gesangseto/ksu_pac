@@ -149,26 +149,24 @@
 
             <div class="row">
               <div class="col-md-4">
-                <a class="btn btn-primary" href="<?= site_url('Absence_Sdm/Create') ?>?project_id=<?= $_GET['id'] ?>">Tambah Pekerja</a>
-                <a class="btn btn-info" href="<?= site_url('Project/Update') ?>?project_id=<?= $_GET['id'] ?>&req_approval=true">Request Approval</a>
-              </div>
-              <div class="col-md-8">
-                <?php if (isset($message)) {
-                  if ($status == 0) {
-                    echo '<div class="alert alert-block alert-danger">';
-                    echo '<button type="button" class="close" data-dismiss="alert">';
-                    echo '<i class="ace-icon fa fa-times"></i>';
-                    echo '</button>';
-                    echo $message;
-                    echo '</div>';
-                  } else {
-                    echo '<div class="alert alert-block alert-success">';
-                    echo '<button type="button" class="close" data-dismiss="alert">';
-                    echo '<i class="ace-icon fa fa-times"></i>';
-                    echo '</button>';
-                    echo $message;
-                    echo '</div>';
-                  }
+                <?php if ($project[0]['status'] == 'New') {
+                  echo ' <a class="btn btn-primary" href="' . site_url('Absence_Sdm/Create') . '?project_id=' . $_GET['id'] . '">Tambah Pekerja</a>';
+                  echo '&nbsp;';
+                  echo '<a class="btn btn-info" href="' . site_url('Project/Update') . '?project_id=' . $_GET['id'] . '&req_approval=true">Request Approval</a>';
+                } else if ($project[0]['status'] == 'Decline') {
+                  echo ' <a class="btn btn-primary" href="' . site_url('Absence_Sdm/Create') . '?project_id=' . $_GET['id'] . '">Tambah Pekerja</a>';
+                  echo '&nbsp;';
+                  echo '<a class="btn btn-warning" href="' . site_url('Project/Update') . '?project_id=' . $_GET['id'] . '&req_approval=true">Request Approval</a>';
+                  echo '&nbsp;';
+                  echo '<div class="form-group has-warning has-feedback">';
+                  echo '<label for="inputWarning2" class="control-label">' . @$project[0]['project_note'] . '</label>';
+                  echo '</div>';
+                } else if ($project[0]['status'] == 'Pending Approval') {
+                  echo '<div class="form-group has-warning has-feedback">';
+                  echo '<label for="inputWarning2" class="control-label">Waiting for approve</label>';
+                  echo '</div>';
+                } else if ($project[0]['status'] == 'Approved') {
+                  echo '<a class="btn btn-success" href="' . site_url('Project/Update') . '?project_id=' . $_GET['id'] . '&running=true">Start Project</a>';
                 } ?>
               </div>
 
@@ -204,9 +202,12 @@
                       echo '<td>' . $row_uniq['phone_number'] . '</td>';
                       echo '<td>' . $working_day . '</td>';
                       echo '<td>';
-                      echo '<a href="' . site_url('Absence_Sdm/Delete') . '?sdm_id=' . $row['id'] . '&project_id=' . $row['project_id'] . '" class="btn btn-danger"><i class="fa fa-trash"></i></a>';
-                      // echo '<a href="' . site_url('User_Sdm/Update') . '?id=' . $row['id'] . '" class="btn btn-warning"><i class="fa fa-pencil"></i></a>';
-                      echo '<a href="' . site_url('Absence_Sdm/Read') . '?id=' . $row['id'] . '&project_id=' . $row['project_id'] . '" class="btn btn-success"><i class="fa fa-search"></i></a>';
+                      if ($project[0]['status'] == 'New' || $project[0]['status'] == 'Decline') {
+                        echo '<a href="' . site_url('Absence_Sdm/Delete') . '?sdm_id=' . $row['id'] . '&project_id=' . $row['project_id'] . '" class="btn btn-danger"><i class="fa fa-trash"></i></a>';
+                        echo '<a href="' . site_url('Absence_Sdm/Read') . '?id=' . $row['id'] . '&project_id=' . $row['project_id'] . '" class="btn btn-success"><i class="fa fa-search"></i></a>';
+                      } else if ($project[0]['status'] == 'Running') {
+                        echo '<a href="' . site_url('Absence_Sdm/Read') . '?id=' . $row['id'] . '&project_id=' . $row['project_id'] . '" class="btn btn-success"><i class="fa fa-search"></i></a>';
+                      }
                       echo '</td>';
                       echo '</tr>';
                       $no++;

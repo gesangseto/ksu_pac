@@ -46,7 +46,7 @@ class _Absence_Sdm extends CI_Model
     {
         $query = "SELECT B.id AS sdm_id,B.fullname AS fullname,B.phone_number as phone_number, C.project_name AS project_name ,C.id AS project_id ,C.status AS status,D.fullname as project_owner
         FROM `sdm_absence` AS A JOIN sdm_user AS B ON A.sdm_id = B.id JOIN project AS C ON A.project_id = C.id JOIN  customer AS D ON C.customer_id = D.id
-        WHERE A.deleted =0 AND B.deleted=0 AND A.status =0
+        WHERE A.deleted =0 AND B.deleted=0 AND A.status =0 AND C.status='Running'
         GROUP BY A.sdm_id";
         $data = $this->db->query($query);
         return ($data)->result_array();

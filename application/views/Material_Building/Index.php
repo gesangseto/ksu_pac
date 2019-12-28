@@ -1,7 +1,7 @@
 <link href="<?php echo base_url('dist/datatables/datatables/css/jquery.dataTables.min.css') ?>" rel="stylesheet">
 <script src="<?= base_url('dist/datatables/jquery/jquery-2.2.3.min.js') ?>"></script>
 <script src="<?= base_url('dist/datatables/datatables/js/jquery.dataTables.min.js') ?>"></script>
-
+<!-- SWAL Fire -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- Body Here -->
 <div class="col-xs-12 col-sm-9 content">
@@ -11,14 +11,14 @@
                 <a href="javascript:void(0);" class="toggle-sidebar">
                     <span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span>
                 </a>
-                Project / List
+                Master Material Building
             </h3>
         </div>
         <div class="panel-body">
             <div class="content-row">
                 <div class="row">
                     <div class="col-md-4">
-                        <a class="btn btn-primary" href="<?= site_url('Project/Create') ?>">Create Project</a>
+                        <a class="btn btn-primary" href="<?= site_url('User_Sdm/Create') ?>">Add SDM</a>
                     </div>
                     <div class="col-md-8">
                         <?php if (isset($message)) {
@@ -45,12 +45,12 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>ID Project</th>
-                                    <th>Nama Project</th>
-                                    <th>Lokasi Project</th>
-                                    <th>Start Date</th>
-                                    <th>Finish Date</th>
-                                    <th>Status</th>
+                                    <th>Nama Barang</th>
+                                    <th>Kategori</th>
+                                    <th>Merek</th>
+                                    <th>Dimensi</th>
+                                    <th>Satuan</th>
+                                    <th>Harga</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -58,6 +58,7 @@
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div><!-- panel body -->
@@ -74,7 +75,7 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= site_url('Ajax_Datatables/get_data_project') ?>",
+                "url": "<?= site_url('Ajax_Datatables/get_data_material_building') ?>",
                 "type": "POST"
             },
             "columnDefs": [{
@@ -96,7 +97,7 @@
             })
             .then((willDelete) => {
                 if (willDelete) {
-                    window.location.href = "<?= site_url('Project/Delete?id='); ?>" + uid;
+                    window.location.href = "<?= site_url('User_Sdm/Delete?id='); ?>" + uid;
                 } else {
                     swal("User is safe!");
                 }

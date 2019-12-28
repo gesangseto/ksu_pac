@@ -13,11 +13,11 @@ class Print_Document extends CI_Controller
     }
 
 
-    public function Payroll_Sdm()
+    public function Payroll_Sdm_OLD()
     {
         $this->load->view('Print_Document/Payroll_Sdm_New');
     }
-    public function Payroll_Sdm_OLD()
+    public function Payroll_Sdm()
     {
         $price = 200000;
         $pdf = new FPDF("L", "cm", "A5");
@@ -85,7 +85,7 @@ class Print_Document extends CI_Controller
         $pdf->MultiCell(19.5, 0.5, 'Biaya Estimasi    : Rp. ' . number_format($price, 2, ',', '.') . '__________________', 0, 'L');
         $pdf->SetX(4);
 
-        $pdf->Output("laporan_buku.pdf", "I");
+        $pdf->Output();
     }
 }
 

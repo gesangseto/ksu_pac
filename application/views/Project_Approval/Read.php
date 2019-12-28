@@ -149,7 +149,7 @@
 
             <div class="row">
               <div class="col-md-4">
-                <a class="btn btn-success" href="<?= site_url('Project_Approval/Update') ?>?project_id=<?= $_GET['project_id'] ?>&approve=true">Approve</a>
+                <a class="btn btn-success" href="<?= site_url('Project_Approval/Update') ?>?project_id=<?= $_GET['project_id'] ?>&approved=true">Approve</a>
                 <a data-toggle="modal" data-target="#decline" class="btn btn-danger"></i>Decline</a>
               </div>
               <div class="col-md-8">

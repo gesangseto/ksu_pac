@@ -72,7 +72,7 @@
                                     echo '<td>' . $row['project_name'] . '</td>';
                                     echo '<td>' . $row['project_owner'] . '</td>';
                                     echo '<td>';
-                                    echo '<a href="' . site_url('Absence_Sdm/Delete') . '?sdm_id=' . $row['sdm_id'] . '&project_id=' . $row['project_id'] . '" class="btn btn-danger"><i class="fa fa-trash"></i></a>';
+                                    // echo '<a href="' . site_url('Absence_Sdm/Delete') . '?sdm_id=' . $row['sdm_id'] . '&project_id=' . $row['project_id'] . '" class="btn btn-danger"><i class="fa fa-trash"></i></a>';
                                     // echo '<a href="' . site_url('Absence_Sdm/Update') . '?id=' . $row['sdm_id'] . '&project_id=' . $row['project_id'] . '" class="btn btn-warning"><i class="fa fa-pencil"></i></a>';
                                     echo '<a href="' . site_url('Absence_Sdm/Read') . '?id=' . $row['sdm_id'] . '&project_id=' . $row['project_id'] . '" class="btn btn-success"><i class="fa fa-search"></i></a>';
                                     echo '</td>';
