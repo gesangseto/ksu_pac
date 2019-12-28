@@ -11,14 +11,14 @@
                 <a href="javascript:void(0);" class="toggle-sidebar">
                     <span class="fa fa-angle-double-left" data-toggle="offcanvas" title="Maximize Panel"></span>
                 </a>
-                Master Material Building
+                Master Material Category
             </h3>
         </div>
         <div class="panel-body">
             <div class="content-row">
                 <div class="row">
                     <div class="col-md-4">
-                        <a class="btn btn-primary" href="<?= site_url('User_Sdm/Create') ?>">Add Material</a>
+                        <a class="btn btn-primary" href="<?= site_url('User_Sdm/Create') ?>">Add Category</a>
                     </div>
                     <div class="col-md-8">
                         <?php if (isset($message)) {
@@ -45,12 +45,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Barang</th>
                                     <th>Kategori</th>
-                                    <th>Merek</th>
-                                    <th>Dimensi</th>
-                                    <th>Satuan</th>
-                                    <th>Harga</th>
+                                    <th>Keterangan</th>
+                                    <th>Tanggal Buat</th>
+                                    <th>Tanggal Ubah</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -75,7 +73,7 @@
             "serverSide": true,
             "order": [],
             "ajax": {
-                "url": "<?= site_url('Ajax_Datatables/get_data_material_building') ?>",
+                "url": "<?= site_url('Ajax_Datatables/get_data_material_category') ?>",
                 "type": "POST"
             },
             "columnDefs": [{

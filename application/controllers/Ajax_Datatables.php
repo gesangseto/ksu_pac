@@ -168,9 +168,9 @@ class Ajax_Datatables extends CI_Controller
     function get_data_material_building()
     {
         $BaseData = array(
-            'table' => 'material_building',
-            'column_order' => array(null, 'material_name', 'category_id', 'brand', 'dimension', 'unit', 'price'),
-            'column_search' => array('material_name', 'category_id', 'brand', 'dimension', 'unit', 'price'),
+            'table' => 'Get_All_Material',
+            'column_order' => array(null, 'material_name', 'category_name', 'brand', 'dimension', 'unit', 'price'),
+            'column_search' => array('material_name', 'category_name', 'brand', 'dimension', 'unit', 'price'),
             'order' => array('id' => 'asc')
         );
         $list = $this->_Ajax_Datatables->get_datatables($BaseData);
@@ -181,11 +181,45 @@ class Ajax_Datatables extends CI_Controller
             $row = array();
             $row[] = $no;
             $row[] = $field->material_name;
-            $row[] = $field->category_id;
+            $row[] = $field->category_name;
             $row[] = $field->brand;
             $row[] = $field->dimension;
             $row[] = $field->unit;
             $row[] = $field->price;
+            $row[] = '
+            <button onclick="hapus(' . $field->id . ')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                <a href="' . site_url('Project/Update') . '?id=' . $field->id . '" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                <a href="' . site_url('Project/Read') . '?id=' . $field->id . '" class="btn btn-success"><i class="fa fa-search"></i></a>';
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->_Ajax_Datatables->count_all($BaseData),
+            "recordsFiltered" => $this->_Ajax_Datatables->count_filtered($BaseData),
+            "data" => $data,
+        );
+        //output dalam format JSON
+        echo json_encode($output);
+    }
+    function get_data_material_category()
+    {
+        $BaseData = array(
+            'table' => 'material_category',
+            'column_order' => array(null, 'category_name', 'description', 'create_time', 'update_time'),
+            'column_search' => array('category_name', 'description', 'create_time', 'update_time'),
+            'order' => array('id' => 'asc')
+        );
+        $list = $this->_Ajax_Datatables->get_datatables($BaseData);
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $field) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $field->category_name;
+            $row[] = $field->description;
+            $row[] = $field->create_time;
+            $row[] = $field->update_time;
             $row[] = '
             <button onclick="hapus(' . $field->id . ')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                 <a href="' . site_url('Project/Update') . '?id=' . $field->id . '" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
