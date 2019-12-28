@@ -125,8 +125,8 @@ class Ajax_Datatables extends CI_Controller
     {
         $BaseData = array(
             'table' => 'project',
-            'column_order' => array(null, 'id', 'customer_id', 'project_name', 'project_address', 'start_date', 'finish_date'),
-            'column_search' => array('id', 'customer_id', 'project_name', 'project_address', 'start_date', 'finish_date'),
+            'column_order' => array(null, 'id', 'project_name', 'project_address', 'start_date', 'finish_date', 'status'),
+            'column_search' => array('id', 'project_name', 'project_address', 'start_date', 'finish_date', 'status'),
             'order' => array('id' => 'asc')
         );
         $list = $this->_Ajax_Datatables->get_datatables($BaseData);
@@ -137,15 +137,22 @@ class Ajax_Datatables extends CI_Controller
                 $no++;
                 $row = array();
                 $row[] = $no;
-                $row[] = $field->nik;
-                $row[] = $field->fullname;
-                $row[] = $field->phone_number;
-                $row[] = $field->address;
-                $row[] = $field->create_time;
-                $row[] = '
+                $row[] = $field->id;
+                $row[] = $field->project_name;
+                $row[] = $field->project_address;
+                $row[] = $field->start_date;
+                $row[] = $field->finish_date;
+                $row[] = $field->status;
+                if ($field->status == 'New' || $field->status == 'Decline') {
+                    $row[] = '
             <button onclick="hapus(' . $field->id . ')" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                <a href="' . site_url('Customer/Update') . '?id=' . $field->id . '" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
-                <a href="' . site_url('Customer/Read') . '?id=' . $field->id . '" class="btn btn-success"><i class="fa fa-search"></i></a>';
+                <a href="' . site_url('Project/Update') . '?id=' . $field->id . '" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                <a href="' . site_url('Project/Read') . '?id=' . $field->id . '" class="btn btn-success"><i class="fa fa-search"></i></a>';
+                } else {
+                    $row[] = '
+                <a href="' . site_url('Project/Update') . '?id=' . $field->id . '" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                <a href="' . site_url('Project/Read') . '?id=' . $field->id . '" class="btn btn-success"><i class="fa fa-search"></i></a>';
+                }
                 $data[] = $row;
             }
         }
