@@ -138,6 +138,19 @@
                 <input type="text" readonly value="<?= $project[0]['finish_date']  ?>" class="form-control" name="title">
               </div>
             </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">Project Status</label>
+              <div class="col-md-2">
+                <input type="text" readonly value="<?= $project[0]['status'] ?>" class="form-control" name="title">
+              </div>
+              <?php
+              if ($project[0]['status'] == "Running") {
+                echo '<div class="col-md-2">';
+                echo '<a href="' . site_url('Project/Update') . '?project_id=' . $_GET['id'] . '&finishing=true" class="form-control btn btn-success">Change to Finish</a>';
+                echo '</div>';
+              }
+              ?>
+            </div>
           </div>
         </div>
         <div class="panel panel-default">

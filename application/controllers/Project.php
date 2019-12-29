@@ -73,6 +73,16 @@ class Project extends CI_Controller
             $dataRs = $this->_Project->_update_status_project($field);
             $dataRs['all_project'] = $this->_Project->_get_all_project();
             $this->load->view('Project/Index', $dataRs);
+        } else if (!empty($_GET['finishing'])) {
+
+            $id = $this->input->get('project_id');
+            $field = array(
+                'id' => $id,
+                'status' => 'Finish'
+            );
+            $dataRs = $this->_Project->_update_status_project($field);
+            $dataRs['all_project'] = $this->_Project->_get_all_project();
+            $this->load->view('Project/Index', $dataRs);
         } else if (!empty($_GET['id'])) {
             $id = $this->input->get('id');
             $data['all_customer'] = $this->_Project->_get_all_customer();
