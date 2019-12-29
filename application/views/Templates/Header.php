@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Bootflat-Admin Template</title>
+    <title>KSU-PAC</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="bookmark" href="favicon_16.ico" />
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('') ?>dist/favicon.ico" />

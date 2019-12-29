@@ -114,7 +114,7 @@
                       <?php
                       foreach ($week as $row) {
                         echo '<div class="tab-pane fade" id="week_' . $row['week'] . '">';
-                        ?>
+                      ?>
                         <table id="table_<?= $row['week'] ?>" class="table table-hover" style="width:90%">
                           <thead>
                             <tr>
@@ -129,32 +129,32 @@
                           </thead>
                           <tbody>
                             <?php
-                              foreach ($absence_week as $row_absence) {
-                                if ($row['week'] == $row_absence['week']) {
-                                  $uid = $row['week'];
-                                  if ($row_absence['time_in'] != '00:00:00' && $row_absence['time_out'] != '00:00:00') {
-                                    echo '<tr class="info">';
-                                  } else {
-                                    echo '<tr>';
-                                  }
-                                  echo '<td><b>' . @date('D d-m-Y', strtotime($row_absence['date'])) . '</b></td>';
-                                  echo '<td>' . @$row_absence['time_in'] . '</td>';
-                                  echo '<td>' .  @$row_absence['rest_start'] . '</td>';
-                                  echo '<td>' . @$row_absence['rest_finish'] . '</td>';
-                                  echo '<td>' .  @$row_absence['time_out'] . '</td>';
-                                  echo '<td>' . @$row_absence['loan_amount  '] . '</td>';
-                                  echo '<td>';
-                                  if ($row['status'] == 0 || $row['status'] == -1) {
-                                    echo '<a data-toggle="modal" data-target="#' . $row_absence['id'] . '" class="btn btn-warning">edit absen</a>';
-                                  } else {
-                                    echo '<a href="#" class="btn">Cannot edit</a>';
-                                  }
-                                  echo '</td>';
-                                  echo '</tr>';
-                                  $periode = $row_absence['date'];
+                            foreach ($absence_week as $row_absence) {
+                              if ($row['week'] == $row_absence['week']) {
+                                $uid = $row['week'];
+                                if ($row_absence['time_in'] != '00:00:00' && $row_absence['time_out'] != '00:00:00') {
+                                  echo '<tr class="info">';
+                                } else {
+                                  echo '<tr>';
                                 }
+                                echo '<td><b>' . @date('D d-m-Y', strtotime($row_absence['date'])) . '</b></td>';
+                                echo '<td>' . @$row_absence['time_in'] . '</td>';
+                                echo '<td>' .  @$row_absence['rest_start'] . '</td>';
+                                echo '<td>' . @$row_absence['rest_finish'] . '</td>';
+                                echo '<td>' .  @$row_absence['time_out'] . '</td>';
+                                echo '<td>' . @$row_absence['loan_amount  '] . '</td>';
+                                echo '<td>';
+                                if ($row['status'] == 0 || $row['status'] == -1) {
+                                  echo '<a data-toggle="modal" data-target="#' . $row_absence['id'] . '" class="btn btn-warning">edit absen</a>';
+                                } else {
+                                  echo '<a href="#" class="btn">Cannot edit</a>';
+                                }
+                                echo '</td>';
+                                echo '</tr>';
+                                $periode = $row_absence['date'];
                               }
-                              ?>
+                            }
+                            ?>
                         </table>
                       <?php
                         if ($row['status'] == -1) {
@@ -221,15 +221,15 @@ foreach ($absence_week as $row) { ?>
                   </thead>
                   <tbody>
                     <?php
-                      echo '<tr>';
-                      echo '<td><input type="time"  name="time_in" required class="form-control"></td>';
-                      echo '<td><input type="time"  name="rest_start" required class="form-control"></td>';
-                      echo '<td><input type="time"  name="rest_finish" required class="form-control"></td>';
-                      echo '<td><input type="time"  name="time_out" required class="form-control"></td>';
-                      echo '<td><input type="text"  name="loan_amount" required value="0" class="form-control"></td>';
-                      echo '<td><input type="text"  name="loan_description" class="form-control"></td>';
-                      echo '</tr>';
-                      ?>
+                    echo '<tr>';
+                    echo '<td><input type="time"  name="time_in" required class="form-control"></td>';
+                    echo '<td><input type="time"  name="rest_start" required class="form-control"></td>';
+                    echo '<td><input type="time"  name="rest_finish" required class="form-control"></td>';
+                    echo '<td><input type="time"  name="time_out" required class="form-control"></td>';
+                    echo '<td><input type="text"  name="loan_amount" required value="0" class="form-control"></td>';
+                    echo '<td><input type="text"  name="loan_description" class="form-control"></td>';
+                    echo '</tr>';
+                    ?>
                   </tbody>
                 </table>
                 <button class="btn btn-lg btn-primary btn-block" type="submit" name="create_absence" value="TRUE">Save</button>
